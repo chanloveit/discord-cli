@@ -5,8 +5,12 @@
     "dotenv": "^17.2.4",
     "typescript": "^5.9.3"
   },
+	"scripts": {
+    "dev": "tsx index.ts"
+  },
   "devDependencies": {
-    "@types/node": "^25.2.2"
+    "@types/node": "^25.2.2",
+    "tsx": "^4.21.0"
   },
   "license": "MIT"
 }
