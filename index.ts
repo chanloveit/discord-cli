@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import { Client, GatewayIntentBits, Events, ChannelType } from 'discord.js';
+import { commands } from './command.js';
 import * as readline from 'readline';
 
 const client: Client = new Client({
@@ -18,11 +19,7 @@ const rl = readline.createInterface({
 
 client.once(Events.ClientReady, (readyClient) => {
 	console.log(`✓ Logged in as ${readyClient.user?.tag}\n`);
-	console.log('Commands: ');
-	console.log('/servers - List all servers');
-	console.log('/channels <Server ID> - List text channels in a server');
-	console.log('/quit - Exit\n');
-
+	commands();
 	rl.prompt();
 })
 
@@ -31,7 +28,7 @@ rl.on('line', (input: string) => {
 	const [command, ...args] = trimmed.split(' ');
 	
 	if(command == '/servers'){
-		console.log(`${client.guilds.cache.size} Servers.`);
+		console.log(`\n${client.guilds.cache.size} Servers.`);
 		
 		client.guilds.cache.forEach(guild => {
 			console.log(`${guild.name} (ID: ${guild.id})`);
@@ -53,11 +50,25 @@ rl.on('line', (input: string) => {
 		}
 		
 		const textChannels = guild.channels.cache.filter(channel => channel.type === ChannelType.GuildText);
-		console.log(`${textChannels.size} text channels in ${guild.name}\n`);
+		console.log(`\n${textChannels.size} text channels in ${guild.name}\n`);
 		
 		textChannels.forEach(channel => {
 			console.log(`#${channel.name} (ID: ${channel.id})`);
 		});
+	}
+
+	else if(command == '/join'){
+		
+	}
+
+	else if(command == 'leave'){
+		
+	}
+
+	else if(command == '/help'){
+		console.log('\n');
+		commands();
+		rl.prompt();
 	}
 		
 	else if(command == '/quit'){
