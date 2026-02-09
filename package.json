@@ -6,7 +6,8 @@
     "typescript": "^5.9.3"
   },
 	"scripts": {
-    "dev": "tsx index.ts"
+    "dev": "tsx index.ts",
+		"setup": "tsx setup.ts"
   },
   "devDependencies": {
     "@types/node": "^25.2.2",
