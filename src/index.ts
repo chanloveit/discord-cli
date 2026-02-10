@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import chalk from 'chalk';
 import { Client, GatewayIntentBits, Events, ChannelType, TextChannel } from 'discord.js';
-import { commands } from './command.js';
+import { commands } from './utils/command.js';
 import * as readline from 'readline';
 
 
