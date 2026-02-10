@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import chalk from 'chalk';
+import { colors } from './utils/colors.js';
 import { Client, GatewayIntentBits, Events, ChannelType, TextChannel } from 'discord.js';
 import { commands } from './utils/command.js';
 import * as readline from 'readline';
@@ -12,18 +12,6 @@ const client: Client = new Client({
 		GatewayIntentBits.MessageContent,
 	]
 });
-
-const colors = {
-	discord: chalk.hex('#5865F2'), 
-	success: chalk.green,     
-	danger: chalk.hex('#ED4245'),      
-	warning: chalk.hex('#FEE75C'),     
-	text: chalk.hex('#DBDEE1'),        
-	username: chalk.cyan,     
-	timestamp: chalk.gray,
-	command: chalk.hex('#EB459E'),      
-};
-
 
 const rl = readline.createInterface({
 	input: process.stdin,
