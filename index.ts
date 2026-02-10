@@ -42,10 +42,13 @@ client.once(Events.ClientReady, (readyClient) => {
 
 client.on('messageCreate', (message) => {
   if (currentChannel && message.channel.id === currentChannel.id){
-		const time: Date = new Date(message.createdTimestamp);
-		const hours: string = time.getHours().toString().padStart(2, '0');
-		const minutes: string = time.getMinutes().toString().padStart(2, '0');
-		const timeStr: string = colors.timestamp(`[${hours}:${minutes}] `);
+		const time = new Date(message.createdTimestamp).toLocaleTimeString(undefined, {
+			hour: '2-digit',
+			minute: '2-digit',
+			hour12: false
+		});
+		
+		const timeStr = colors.timestamp(`[${time}] `);
     console.log(timeStr + '[' + colors.username(message.author.username) + ']: ' + message.content);
   }
 });
@@ -106,10 +109,13 @@ rl.on('line', async (input: string) => {
 			const messages = await channel.messages.fetch({ limit: 10 });
 	          console.log('\nRecent messages:');
 	          messages.reverse().forEach(message => {
-							const time: Date = new Date(message.createdTimestamp);
-							const hours: string = time.getHours().toString().padStart(2, '0');
-							const minutes: string = time.getMinutes().toString().padStart(2, '0');
-							const timeStr: string = colors.timestamp(`[${hours}:${minutes}] `);
+							const time = new Date(message.createdTimestamp).toLocaleTimeString(undefined, {
+								hour: '2-digit',
+								minute: '2-digit',
+								hour12: false
+							});
+							
+							const timeStr = colors.timestamp(`[${time}] `);
 	            console.log(timeStr + '[' + colors.username(message.author.username) + ']: ' + message.content);
 	          });
 		}
