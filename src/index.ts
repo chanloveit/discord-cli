@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { colors } from './utils/colors.js';
 import { findChannelByPath } from './utils/channelFinder.js';
+import { formatTime } from './utils/formatter.js';
 import { Client, GatewayIntentBits, Events, ChannelType, TextChannel } from 'discord.js';
 import { commands } from './utils/command.js';
 import * as readline from 'readline';
@@ -31,11 +32,7 @@ client.once(Events.ClientReady, (readyClient) => {
 
 client.on('messageCreate', (message) => {
   if (currentChannel && message.channel.id === currentChannel.id){
-		const time = new Date(message.createdTimestamp).toLocaleTimeString(undefined, {
-			hour: '2-digit',
-			minute: '2-digit',
-			hour12: false
-		});
+		const time = formatTime(message.createdTimestamp);
 		
 		const timeStr = colors.timestamp(`[${time}] `);
     console.log(timeStr + '[' + colors.username(message.author.username) + ']: ' + message.content);
@@ -87,11 +84,7 @@ rl.on('line', async (input: string) => {
 			const messages = await channel.messages.fetch({ limit: 10 });
 	          console.log('\nRecent messages:');
 	          messages.reverse().forEach(message => {
-							const time = new Date(message.createdTimestamp).toLocaleTimeString(undefined, {
-								hour: '2-digit',
-								minute: '2-digit',
-								hour12: false
-							});
+							const time = formatTime(message.createdTimestamp);
 							
 							const timeStr = colors.timestamp(`[${time}] `);
 	            console.log(timeStr + '[' + colors.username(message.author.username) + ']: ' + message.content);
