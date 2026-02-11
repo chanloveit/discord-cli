@@ -1,5 +1,5 @@
 # Discord in Terminal
-
+![](./public/main.jpg)
 > Building
 
 ## Setup
