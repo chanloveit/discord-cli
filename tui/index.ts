@@ -27,7 +27,8 @@ const inputBox = createInputBox(screen);
 
 let currentChannel: TextChannel | null = null;
 
-screen.key(['escape', 'C-c'], () => {
+screen.key(['C-c'], () => {
+	chatBox.log(chalk.yellow('quit process...'))
 	return process.exit(0);
 });
 
@@ -101,13 +102,13 @@ sidebar.on('select', async(item, index) => {
 
 inputBox.on('cancel', () => {
 	sidebar.focus();
-	chatBox.log('selecting channels...');
+	chatBox.log(chalk.yellow('selecting channels...'));
 	screen.render();
 });
 
 sidebar.key(['C-d'], () => {
 	inputBox.focus();
-	chatBox.log('on chat');
+	chatBox.log(chalk.yellow('on chat'));
 	screen.render();
 });
 
