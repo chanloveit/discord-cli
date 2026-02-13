@@ -71,12 +71,12 @@ sidebar.on('select', async(item, index) => {
 			const guildName = (found as TextChannel).guild.name;
 			
 			chatBox.setLabel(`channel - #${channelName}`);
-			chatBox.log(`{green-fg}✓ Joined #${channelName} in ${guildName}{/green-fg}`);
 			chatBox.log('');
+			chatBox.log(chalk.green(`✓ Joined #${channelName} in ${guildName}`));
 
 			try{
 				const messages = await (found as TextChannel).messages.fetch({ limit: 10});
-				chatBox.log(`{yellow-fg}--- Recent messages ---{/yellow-fg}`);
+				chatBox.log(chalk.yellow(`--- Recent messages ---`));
 				messages.reverse().forEach(msg => {
 					const time = new Date(msg.createdTimestamp).toLocaleTimeString(undefined, {
 						hour: '2-digit',
@@ -84,15 +84,14 @@ sidebar.on('select', async(item, index) => {
 						hour12: false
 					});
 
-					chatBox.log(`{gray-fg}[${time}]{/gray-fg} {cyan-fg}${msg.author.username}{/cyan-fg}: ${msg.content}`);
+					chatBox.log(chalk.gray(`[${time}]`) + chalk.cyan(msg.author.username) + ': ' + msg.content);
 				});
 				chatBox.log('');
 			}
 
 			catch(error){
-				chatBox.log(`{red-fg}Failed to load messages{/red-fg}`);
+				chatBox.log(chalk.red('Failed to load messages'));
 			}
-			inputBox.focus();
 			screen.render();
 		}
 	}
@@ -103,26 +102,6 @@ sidebar.on('select', async(item, index) => {
 	}
 });
 
-sidebar.on('select', (item, index) => {
-	chatBox.log('SELECT EVENT TRIGGERED!!!');
-	screen.render();
-});
-
-sidebar.on('action', () => {
-	chatBox.log('ACTION EVENT TRIGGERED!!!');
-	screen.render();
-});
-
-sidebar.on('element click', () => {
-	chatBox.log('CLICK EVENT!!!');
-	screen.render();
-});
-
-// keypress도 다시 확인
-sidebar.on('keypress', (ch, key) => {
-	chatBox.log(`Key: ${key.name}, full: ${key.full}`);
-	screen.render();
-});
 
 inputBox.on('cancel', () => {
 	sidebar.focus();
