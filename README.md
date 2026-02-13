@@ -1,5 +1,6 @@
 # Discord in Terminal
 > Building
+![Discord-TUI](./public/main.jpg)
 
 ## Setup
 
