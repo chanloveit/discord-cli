@@ -12,6 +12,13 @@ export function createSidebar(screen: blessed.Widgets.Screen){
 		style: {
 			border: {
 				fg: 'blue'
+			},
+			selected: {
+				fg: 'blue',
+				bold: true
+			},
+			item: {
+				fg: 'white'
 			}
 		},
 		label: 'Servers & Channels',
@@ -20,12 +27,8 @@ export function createSidebar(screen: blessed.Widgets.Screen){
 		mouse: true,
 		tags: true,
 		interactive: true,
-		invertSelected: true,
-
-		selected: {
-			fg: 'blue'
-		}
+		invertSelected: false
 	});
-
+	
 	return sidebar;
 }
